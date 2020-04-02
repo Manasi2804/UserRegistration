@@ -12,6 +12,7 @@ public class UserValidator {
     String patternFor8characterPassword="^.{8,}";
     String patternForEmailId="^[a-z]{1,}([.]?[-]?[+]?[a-z0-9]{1,})?[@]{1}[a-z0-9]{1,}[.]{1}[a-z]{2,4}([.]?[a-z]{2,4})?$";
     String patternForMobileNumber="^"+COUNTRY_CODE+"[ ][9876]{1}[0-9]{9}$";
+    String patternForMinimumOneUpperCaseCharacterPassword="[A-Z0-9a-z]*[A-Z][A-Z0-9a-z]*";
 
     // Method for matching Regex and input
     public boolean validator(String regexPattern, String input)
@@ -44,6 +45,11 @@ public class UserValidator {
     public boolean isPasswordOfMini8Characters(String password)
     {
         return validator(patternFor8characterPassword,password);
+    }
+    // Method for validating password of minimum one upper case character using Regex
+    public boolean isPasswordOfMinimumUpperCaseCharacter(String password)
+    {
+        return validator(patternForMinimumOneUpperCaseCharacterPassword,password);
     }
 
     public static void main(String[] args)

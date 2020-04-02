@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserValidator {
+    String COUNTRY_CODE="91";
     // Method for validating first name using Regex
     public boolean validateFirstName(String firstName)
     {
@@ -30,6 +31,15 @@ public class UserValidator {
         Matcher matcher = p.matcher(emailId);
         return matcher.matches();
     }
+    // Method for validating mobile number using Regex
+    public boolean validateMobileNumber(String mobileNumber)
+    {
+        String patternForMobileNumber="^"+COUNTRY_CODE+"[ ][9876]{1}[0-9]{9}$";
+        Pattern p = Pattern.compile(patternForMobileNumber);
+        Matcher matcher = p.matcher(mobileNumber);
+        return matcher.matches();
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to user registration");
     }

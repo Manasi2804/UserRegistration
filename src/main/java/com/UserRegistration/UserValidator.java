@@ -21,6 +21,15 @@ public class UserValidator {
         Matcher matcher = p.matcher(lastName);
         return matcher.matches();
     }
+
+    // Method for validating email id using Regex
+    public boolean validateEmailId(String emailId)
+    {
+        String patternForEmailId="^[a-z]{1,}([.]?[-]?[+]?[a-z0-9]{1,})?[@]{1}[a-z0-9]{1,}[.]{1}[a-z]{2,4}([.]?[a-z]{2,4})?$";
+        Pattern p = Pattern.compile(patternForEmailId);
+        Matcher matcher = p.matcher(emailId);
+        return matcher.matches();
+    }
     public static void main(String[] args) {
         System.out.println("Welcome to user registration");
     }

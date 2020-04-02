@@ -13,7 +13,8 @@ public class UserValidator {
     String patternForEmailId="^[a-z]{1,}([.]?[-]?[+]?[a-z0-9]{1,})?[@]{1}[a-z0-9]{1,}[.]{1}[a-z]{2,4}([.]?[a-z]{2,4})?$";
     String patternForMobileNumber="^"+COUNTRY_CODE+"[ ][9876]{1}[0-9]{9}$";
     String patternForMinimumOneUpperCaseCharacterPassword="[A-Z0-9a-z]*[A-Z][A-Z0-9a-z]*";
-    String patternForMinimumOneNumberinCharacterPassword="[A-Z0-9a-z]*[0-9][A-Z0-9a-z]*";
+    String patternForMinimumOneNumericCharacterPassword="[A-Z0-9a-z]*[0-9][A-Z0-9a-z]*";
+    String patternForExactlyOneSpecialCharacterPassword="[A-Z0-9a-z]*[!@#%&][A-Z0-9a-z]*";
     // Method for matching Regex and input
     public boolean validator(String regexPattern, String input)
     {
@@ -54,7 +55,26 @@ public class UserValidator {
     // Method for validating password of minimum one number in character using Regex
     public boolean isPasswordOfMinimumOneNumberinCharacter(String password)
     {
-        return validator(patternForMinimumOneNumberinCharacterPassword,password);
+        String patternForMiniOneNumericCharacterPassword;
+        return validator(patternForMinimumOneNumericCharacterPassword,password);
+    }
+    // Method for validating password of exactly one special character using Regex
+    public boolean isPasswordOfExactlyOneSpecialCharacter(String password)
+    {
+        return validator(patternForExactlyOneSpecialCharacterPassword,password);
+    }
+    public boolean combineAllRulesForPassword(String password) {
+        boolean outcome = false;
+        if (isPasswordOfMini8Characters(password) == true) {
+            if (isPasswordOfMinimumUpperCaseCharacter(password) == true) {
+                if (isPasswordOfMinimumOneNumberinCharacter(password) == true) {
+                    if (isPasswordOfExactlyOneSpecialCharacter(password) == true) {
+                        outcome = true;
+                    }
+                }
+            }
+        }
+        return outcome;
     }
 
     public static void main(String[] args)
